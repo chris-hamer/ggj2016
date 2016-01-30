@@ -23,7 +23,7 @@ public class LevelTransition : MonoBehaviour {
             direction.y *= -1;
             index += direction;
             player.position -= direction.normalized * 13;
-            Application.LoadLevel(scenes[(int)index.y][(int)index.x]);
+            Application.LoadLevel("Scenes/" + scenes[(int)index.y][(int)index.x]);
         }
     }
 }
