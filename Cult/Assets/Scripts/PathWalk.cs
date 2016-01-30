@@ -14,8 +14,9 @@ public class PathWalk : MonoBehaviour {
     public bool DoesPathLoop = false;
     public bool ReversePath = false;
 
-    new private Transform transform;
-    new private Rigidbody2D rigidbody;
+
+    [HideInInspector] new public Transform transform; // cache
+    [HideInInspector] new public Rigidbody2D rigidbody; // cache
     private CharacterSprites sprites;
 
     private PathNode[] pathNodeList = null;
@@ -35,8 +36,7 @@ public class PathWalk : MonoBehaviour {
         }
     }
 	
-	void Update ()
-    {
+
         // Are we waiting at the current point?
         if (waitTimer > 0.0f)
         {
@@ -56,6 +56,7 @@ public class PathWalk : MonoBehaviour {
             {
                 rigidbody.MovePosition(pathNodeList[IndexNextPathNode].Position);
                 waitTimer = pathNodeList[IndexNextPathNode].WaitDuration;
+                
                 if (ReversePath)
                     IndexNextPathNode--;
                 else
