@@ -13,39 +13,53 @@ public class PlayerControls : MonoBehaviour {
     public bool safe;
     public float detection;
 
-	// Use this for initialization
-	void Start ()
+    public static GameObject player;
+    public Vector2 velocity;
+
+    // Use this for initialization
+    void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         sprites = GetComponent<CharacterSprites>();
         safe = true;
         detection = 0f;
-	}
+
+        if (player == null)
+        {
+            GameObject.DontDestroyOnLoad(this.gameObject);
+            player = this.gameObject;
+        }
+        else if (player != this.gameObject)
+        {
+            Destroy(this);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
         // Move using keyboard input
-        Vector2 moveVec = Vector2.zero;
+        velocity = Vector2.zero;
         if (Input.GetKey(KeyCode.UpArrow))
-            moveVec += Vector2.up;
+            velocity += Vector2.up;
         if (Input.GetKey(KeyCode.DownArrow))
-            moveVec += Vector2.down;
+            velocity += Vector2.down;
         if (Input.GetKey(KeyCode.LeftArrow))
-            moveVec += Vector2.left;
+            velocity += Vector2.left;
         if (Input.GetKey(KeyCode.RightArrow))
-            moveVec += Vector2.right;
+            velocity += Vector2.right;
+        velocity.Normalize();
 
         // Face sprite the right way
         if (sprites != null)
-            sprites.SetDirection(moveVec);
+            sprites.SetSpriteDirection(velocity);
 
         // Sprint button because walking is slow
         if (Input.GetKey(KeyCode.LeftShift))
-            moveVec *= 2f;
+            velocity *= 2f;
 
         // Yeah
-        rigidbody.MovePosition(rigidbody.position + moveVec * SPEED);
+        rigidbody.MovePosition(rigidbody.position + velocity * SPEED);
 
         if (!safe)
             detection += DETECTION_RATE * Time.deltaTime;

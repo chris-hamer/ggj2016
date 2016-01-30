@@ -12,9 +12,12 @@ public class PathWalk : MonoBehaviour {
         will use those as locations of the path to walk.
     */
     public bool DoesPathLoop = false;
+    public bool ReversePath = false;
+
 
     [HideInInspector] new public Transform transform; // cache
     [HideInInspector] new public Rigidbody2D rigidbody; // cache
+    private CharacterSprites sprites;
 
     private PathNode[] pathNodeList = null;
     private float speed = PlayerControls.SPEED; // Moves at same speed as the player
@@ -25,6 +28,7 @@ public class PathWalk : MonoBehaviour {
     {
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody2D>();
+        sprites = GetComponent<CharacterSprites>();
         pathNodeList = new PathNode[ListPathNodeTransforms.Length];
         for (int ii=0; ii<ListPathNodeTransforms.Length; ii++)
         {
@@ -32,7 +36,7 @@ public class PathWalk : MonoBehaviour {
         }
     }
 	
-	void Update () {
+
         // Are we waiting at the current point?
         if (waitTimer > 0.0f)
         {
@@ -44,14 +48,27 @@ public class PathWalk : MonoBehaviour {
             // Keep moving unless we reach the destination.
             if (difference.magnitude > MinStoppingDistance)
             {
+                if (sprites != null)
+                    sprites.SetSpriteDirection(Mathf.Abs(difference.x) > Mathf.Abs(difference.y) ? Vector2.right * Mathf.Sign(difference.x) : Vector2.up * Mathf.Sign(difference.y));
                 rigidbody.MovePosition(rigidbody.position + difference.normalized * PlayerControls.SPEED);
             }
             else
             {
+                rigidbody.MovePosition(pathNodeList[IndexNextPathNode].Position);
                 waitTimer = pathNodeList[IndexNextPathNode].WaitDuration;
-                IndexNextPathNode++;
+                
+                if (ReversePath)
+                    IndexNextPathNode--;
+                else
+                    IndexNextPathNode++;
+
                 if (DoesPathLoop) // Not all paths loop
-                    IndexNextPathNode = IndexNextPathNode % pathNodeList.Length;
+                {
+                    if (IndexNextPathNode >= pathNodeList.Length)
+                        IndexNextPathNode = 0;
+                    else if (IndexNextPathNode < 0)
+                        IndexNextPathNode = pathNodeList.Length - 1;
+                }
             }
         }        
 	}
