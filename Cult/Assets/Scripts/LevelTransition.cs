@@ -6,6 +6,7 @@ public class LevelTransition : MonoBehaviour {
 
     public static string[][] scenes =
         {
+          new string[] { "",            "",            "",             "pillar2",      ""            },
           new string[] { "",            "",            "",             "pillar1",      ""            },
           new string[] { "",            "",            "hat",          "hats",         "footprints3" },
           new string[] { "",            "",            "rectangle3",   "footprints1",  "footprints2" },
@@ -13,7 +14,7 @@ public class LevelTransition : MonoBehaviour {
           new string[] { "tutorial1",   "",            "",             "",             ""            },
         };
 
-    public static Vector2 index = new Vector2(0, 4);
+    public static Vector2 index = new Vector2(0, 5);
     public Vector2 direction;
 
     private Rigidbody2D player;

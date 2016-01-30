@@ -14,12 +14,12 @@ public class CirclePathZone : MonoBehaviour {
 
     [HideInInspector] new public CircleCollider2D collider2D; // cache
 
-    private float angularDistanceTraveled = 0.0f;
-    private Transform playerTransform;
-    private Vector3 position3D;
-    private Vector3 lastVector3D;
-    private float clockwiseSign;
-    private bool isTracking = false;
+    public float angularDistanceTraveled = 0.0f;
+    public Transform playerTransform;
+    public Vector3 position3D;
+    public Vector3 lastVector3D;
+    public float clockwiseSign;
+    public bool isTracking = false;
 
 	// Use this for initialization
 	void Start () {
@@ -50,12 +50,17 @@ public class CirclePathZone : MonoBehaviour {
 
     // When the player enters the circular zone, start tracking the difference
     // between the player's position and the pillar's position
-    void OnTriggerStay2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
         if (other.transform==playerTransform) {
             isTracking = true;
             lastVector3D = other.transform.position - transform.position;
-            playerTransform.GetComponent<PlayerControls>().circleSafe = true;
         }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.transform==playerTransform)
+            playerTransform.GetComponent<PlayerControls>().circleSafe = true;
     }
 
     void OnTriggerExit2D(Collider2D other) {
