@@ -13,8 +13,8 @@ public class PathWalk : MonoBehaviour {
     */
     public bool DoesPathLoop = false;
 
-    new private Transform transform;
-    new private Rigidbody2D rigidbody;
+    [HideInInspector] new public Transform transform; // cache
+    [HideInInspector] new public Rigidbody2D rigidbody; // cache
 
     private PathNode[] pathNodeList = null;
     private float speed = PlayerControls.SPEED; // Moves at same speed as the player
