@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class LevelTransition : MonoBehaviour {
 
-    public static string[][] scenes = 
-        { new string[] { "rectangle1", "footprints", } };
+    public static string[][] scenes =
+        { new string[] { "",            "circles",      "footprints1",  "footprints2" },
+          new string[] { "rectangle1",  "rectangle2",   "",             "" } };
 
-    public static Vector2 index = Vector2.zero;
+    public static Vector2 index = new Vector2(0, 1);
     public Vector2 direction;
 
     private Rigidbody2D player;
@@ -22,8 +24,8 @@ public class LevelTransition : MonoBehaviour {
         {
             direction.y *= -1;
             index += direction;
-            player.position -= direction.normalized * 13;
-            Application.LoadLevel("Scenes/" + scenes[(int)index.y][(int)index.x]);
+            player.position -= direction.normalized * (direction.x != 0 ? 13 : 7);
+            SceneManager.LoadScene("Scenes/" + scenes[(int)index.y][(int)index.x]);
         }
     }
 }
