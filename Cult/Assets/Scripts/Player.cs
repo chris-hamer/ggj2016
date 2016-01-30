@@ -5,7 +5,7 @@ public class Player : MonoBehaviour {
 
     new private Rigidbody2D rigidbody;
 
-    public const float SPEED = 0.07f;
+    public const float SPEED = 0.035f;
 
 	// Use this for initialization
 	void Start ()
@@ -26,6 +26,9 @@ public class Player : MonoBehaviour {
             moveVec += Vector2.left;
         if (Input.GetKey(KeyCode.RightArrow))
             moveVec += Vector2.right;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+            moveVec *= 2f;
         rigidbody.MovePosition(rigidbody.position + moveVec * SPEED);
     }
 }
