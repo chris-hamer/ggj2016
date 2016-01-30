@@ -1,2 +1,2 @@
 # ggj2016
-DANKEST MEMES ON THE PLANET
+Puzzle stealth game where you infiltrate a cult and try not to look like a dummy.
