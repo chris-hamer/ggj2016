@@ -50,7 +50,7 @@ public class PathWalk : MonoBehaviour {
             {
                 difference = new Vector2(difference.x != 0f ? Mathf.Sign(difference.x) : 0, difference.y != 0f ? Mathf.Sign(difference.y) : 0);
                 if (sprites != null)
-                    sprites.SetDirection(difference);
+                    sprites.SetSpriteDirection(difference);
                 rigidbody.MovePosition(rigidbody.position + difference * PlayerControls.SPEED);
             }
             else

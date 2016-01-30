@@ -51,7 +51,7 @@ public class PlayerControls : MonoBehaviour {
 
         // Face sprite the right way
         if (sprites != null)
-            sprites.SetDirection(velocity);
+            sprites.SetSpriteDirection(velocity);
 
         // Sprint button because walking is slow
         if (Input.GetKey(KeyCode.LeftShift))

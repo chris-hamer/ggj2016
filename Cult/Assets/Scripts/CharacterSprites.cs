@@ -13,10 +13,10 @@ public class CharacterSprites : MonoBehaviour {
     {
         renderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
-        SetDirection(Vector2.down);
+        SetSpriteDirection(Vector2.down);
 	}
 
-    public void SetDirection(Vector2 direction)
+    public void SetSpriteDirection(Vector2 direction)
     {
         if (direction.y < 0)
             renderer.sprite = down;

@@ -23,7 +23,7 @@ public class RectangleRitual : MonoBehaviour {
         rigidbody.MovePosition(rigidbody.position + dir * PlayerControls.SPEED);
 
         if (sprites != null)
-            sprites.SetDirection(dir);
+            sprites.SetSpriteDirection(dir);
 
         if (currentTarget == 1 && rigidbody.position.x >= targets[currentTarget].position.x ||
             currentTarget == 2 && rigidbody.position.y <= targets[currentTarget].position.y ||
