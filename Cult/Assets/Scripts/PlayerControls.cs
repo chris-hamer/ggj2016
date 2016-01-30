@@ -31,7 +31,7 @@ public class PlayerControls : MonoBehaviour {
         }
         else if (player != this.gameObject)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 	
