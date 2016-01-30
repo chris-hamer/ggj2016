@@ -41,13 +41,14 @@ public class PlayerControls : MonoBehaviour {
         // Move using keyboard input
         velocity = Vector2.zero;
         if (Input.GetKey(KeyCode.UpArrow))
-            velocity += Vector2.up * SPEED;
+            velocity += Vector2.up;
         if (Input.GetKey(KeyCode.DownArrow))
-            velocity += Vector2.down * SPEED;
+            velocity += Vector2.down;
         if (Input.GetKey(KeyCode.LeftArrow))
-            velocity += Vector2.left * SPEED;
+            velocity += Vector2.left;
         if (Input.GetKey(KeyCode.RightArrow))
-            velocity += Vector2.right * SPEED;
+            velocity += Vector2.right;
+        velocity.Normalize();
 
         // Face sprite the right way
         if (sprites != null)
@@ -58,7 +59,7 @@ public class PlayerControls : MonoBehaviour {
             velocity *= 2f;
 
         // Yeah
-        rigidbody.MovePosition(rigidbody.position + velocity);
+        rigidbody.MovePosition(rigidbody.position + velocity * SPEED);
 
         if (!safe)
             detection += DETECTION_RATE * Time.deltaTime;

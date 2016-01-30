@@ -48,10 +48,9 @@ public class PathWalk : MonoBehaviour {
             // Keep moving unless we reach the destination.
             if (difference.magnitude > MinStoppingDistance)
             {
-                difference = new Vector2(difference.x != 0f ? Mathf.Sign(difference.x) : 0, difference.y != 0f ? Mathf.Sign(difference.y) : 0);
                 if (sprites != null)
                     sprites.SetSpriteDirection(difference);
-                rigidbody.MovePosition(rigidbody.position + difference * PlayerControls.SPEED);
+                rigidbody.MovePosition(rigidbody.position + difference.normalized * PlayerControls.SPEED);
             }
             else
             {
