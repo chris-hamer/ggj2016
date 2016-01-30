@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour {
 
@@ -37,10 +38,20 @@ public class PlayerControls : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            foreach (Transform g in GameObject.FindObjectsOfType<Transform>())
+            {
+                if (g.gameObject != gameObject)
+                    GameObject.Destroy(g.gameObject);
+            }
+            SceneManager.LoadScene("tutorial2", LoadSceneMode.Additive);
+        }
+
         // Move using keyboard input
         velocity = Vector2.zero;
 
@@ -77,5 +88,16 @@ public class PlayerControls : MonoBehaviour {
             detection = 1f;
             Debug.Log("You suck");
         }
+    }
+
+    public void LoadLevel(string name)
+    {
+        foreach (Transform g in GameObject.FindObjectsOfType<Transform>())
+        {
+            if (g.gameObject != gameObject)
+                GameObject.Destroy(g.gameObject);
+        }
+        Debug.Log(name);
+        SceneManager.LoadScene(name, LoadSceneMode.Additive);
     }
 }
