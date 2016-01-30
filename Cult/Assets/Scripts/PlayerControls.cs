@@ -14,6 +14,7 @@ public class PlayerControls : MonoBehaviour {
     public float detection;
 
     public static GameObject player;
+    public Vector2 velocity;
 
     // Use this for initialization
     void Start()
@@ -38,26 +39,26 @@ public class PlayerControls : MonoBehaviour {
 	void Update ()
     {
         // Move using keyboard input
-        Vector2 moveVec = Vector2.zero;
+        velocity = Vector2.zero;
         if (Input.GetKey(KeyCode.UpArrow))
-            moveVec += Vector2.up;
+            velocity += Vector2.up * SPEED;
         if (Input.GetKey(KeyCode.DownArrow))
-            moveVec += Vector2.down;
+            velocity += Vector2.down * SPEED;
         if (Input.GetKey(KeyCode.LeftArrow))
-            moveVec += Vector2.left;
+            velocity += Vector2.left * SPEED;
         if (Input.GetKey(KeyCode.RightArrow))
-            moveVec += Vector2.right;
+            velocity += Vector2.right * SPEED;
 
         // Face sprite the right way
         if (sprites != null)
-            sprites.SetDirection(moveVec);
+            sprites.SetDirection(velocity);
 
         // Sprint button because walking is slow
         if (Input.GetKey(KeyCode.LeftShift))
-            moveVec *= 2f;
+            velocity *= 2f;
 
         // Yeah
-        rigidbody.MovePosition(rigidbody.position + moveVec * SPEED);
+        rigidbody.MovePosition(rigidbody.position + velocity);
 
         if (!safe)
             detection += DETECTION_RATE * Time.deltaTime;

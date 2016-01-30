@@ -68,7 +68,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterSprites.cs" />
     <Compile Include="Assets\Scripts\DetectionMeter.cs" />
+    <Compile Include="Assets\Scripts\FootstepZone.cs" />
     <Compile Include="Assets\Scripts\LevelTransition.cs" />
+    <Compile Include="Assets\Scripts\PathNode.cs" />
+    <Compile Include="Assets\Scripts\PathWalk.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\RectangleRitual.cs" />
     <Compile Include="Assets\Scripts\SafeZone.cs" />
