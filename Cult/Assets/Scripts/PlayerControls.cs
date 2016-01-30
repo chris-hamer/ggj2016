@@ -13,14 +13,26 @@ public class PlayerControls : MonoBehaviour {
     public bool safe;
     public float detection;
 
-	// Use this for initialization
-	void Start ()
+    public static GameObject player;
+
+    // Use this for initialization
+    void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         sprites = GetComponent<CharacterSprites>();
         safe = true;
         detection = 0f;
-	}
+
+        if (player == null)
+        {
+            GameObject.DontDestroyOnLoad(this.gameObject);
+            player = this.gameObject;
+        }
+        else if (player != this.gameObject)
+        {
+            Destroy(this);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update ()
