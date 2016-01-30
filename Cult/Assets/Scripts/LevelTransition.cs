@@ -7,8 +7,8 @@ public class LevelTransition : MonoBehaviour {
     public static string[][] scenes =
         {
           new string[] { "",            "",            "rectangle3",   "footprints1",  "footprints2" },
-          new string[] { "",            "rectangle1",  "rectangle2",   "",             ""            },
-          new string[] { "",            "",            "",             "",             ""            },
+          new string[] { "tutorial2",   "rectangle1",  "rectangle2",   "",             ""            },
+          new string[] { "tutorial1",   "",            "",             "",             ""            },
         };
 
     public static Vector2 index = new Vector2(1, 1);

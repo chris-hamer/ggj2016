@@ -49,7 +49,7 @@ public class PathWalk : MonoBehaviour {
             if (difference.magnitude > MinStoppingDistance)
             {
                 if (sprites != null)
-                    sprites.SetSpriteDirection(difference);
+                    sprites.SetSpriteDirection(Mathf.Abs(difference.x) > Mathf.Abs(difference.y) ? Vector2.right * Mathf.Sign(difference.x) : Vector2.up * Mathf.Sign(difference.y));
                 rigidbody.MovePosition(rigidbody.position + difference.normalized * PlayerControls.SPEED);
             }
             else
