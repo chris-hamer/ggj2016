@@ -36,7 +36,8 @@ public class PathWalk : MonoBehaviour {
         }
     }
 	
-
+    void Update()
+    { 
         // Are we waiting at the current point?
         if (waitTimer > 0.0f)
         {

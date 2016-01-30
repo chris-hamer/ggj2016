@@ -12,6 +12,7 @@ public class PlayerControls : MonoBehaviour {
 
     public bool safe;
     public float detection;
+    public bool hasHat;
 
     public static GameObject player;
     public Vector2 velocity;

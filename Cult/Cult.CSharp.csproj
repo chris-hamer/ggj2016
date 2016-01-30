@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterSprites.cs" />
+    <Compile Include="Assets\Scripts\CirclePathZone.cs" />
     <Compile Include="Assets\Scripts\DetectionMeter.cs" />
     <Compile Include="Assets\Scripts\FootstepZone.cs" />
     <Compile Include="Assets\Scripts\LevelTransition.cs" />

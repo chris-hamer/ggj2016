@@ -4,6 +4,7 @@ using System.Collections;
 public class SafeZone : MonoBehaviour {
 
     public PlayerControls controls;
+    public bool RequireHat;
 
     void Start()
     {
@@ -13,7 +14,7 @@ public class SafeZone : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
-            controls.safe = true;
+            controls.safe = !RequireHat || controls.hasHat && RequireHat;
     }
 
     void OnTriggerExit2D(Collider2D collider)

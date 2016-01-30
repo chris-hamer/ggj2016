@@ -21,4 +21,12 @@ public class FootstepZone : MonoBehaviour {
             playerControls.safe = (corner ? playerControls.velocity.magnitude > 0 : playerControls.velocity.normalized == direction);
         }
     }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            playerControls.safe = false;
+        }
+    }
 }
