@@ -43,6 +43,7 @@ public class PlayerControls : MonoBehaviour {
     {
         // Move using keyboard input
         velocity = Vector2.zero;
+
         if (Input.GetKey(KeyCode.UpArrow))
             velocity += Vector2.up;
         if (Input.GetKey(KeyCode.DownArrow))
