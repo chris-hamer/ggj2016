@@ -50,22 +50,24 @@ public class CirclePathZone : MonoBehaviour {
 
     // When the player enters the circular zone, start tracking the difference
     // between the player's position and the pillar's position
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerStay2D(Collider2D other) {
         if (other.transform==playerTransform) {
             isTracking = true;
             lastVector3D = other.transform.position - transform.position;
+            playerTransform.GetComponent<PlayerControls>().circleSafe = true;
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
         if (other.transform == playerTransform)
         {
-            if (Mathf.Abs(angularDistanceTraveled - RequiredAngularDistanceDegrees)> ANGLE_DEGREES_TOLERANCE) {
+            if (Mathf.Abs(angularDistanceTraveled - RequiredAngularDistanceDegrees) > ANGLE_DEGREES_TOLERANCE) {
                 // Player hasn't completed the circular route yet => Unsafe!
-                Debug.Log("oh no");
+                Debug.Log("oh no " + angularDistanceTraveled + " " + RequiredAngularDistanceDegrees + " " + ANGLE_DEGREES_TOLERANCE);
+                playerTransform.GetComponent<PlayerControls>().circleSafe = false;
             }
             else {
-                Debug.Log("clear!");
+                Debug.Log("clear! " + angularDistanceTraveled + " " + RequiredAngularDistanceDegrees + " " + ANGLE_DEGREES_TOLERANCE);
                 isTracking = false; // or whatever is meant to happen
             }
             

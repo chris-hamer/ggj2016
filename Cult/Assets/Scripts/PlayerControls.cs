@@ -11,6 +11,7 @@ public class PlayerControls : MonoBehaviour {
     public const float DETECTION_COOLDOWN = 0.4f;
 
     public bool safe;
+    public bool circleSafe;
     public float detection;
     public bool hasHat;
 
@@ -23,6 +24,7 @@ public class PlayerControls : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody2D>();
         sprites = GetComponent<CharacterSprites>();
         safe = true;
+        circleSafe = false;
         detection = 0f;
 
         if (player == null)
@@ -56,13 +58,13 @@ public class PlayerControls : MonoBehaviour {
             sprites.SetSpriteDirection(velocity);
 
         // Sprint button because walking is slow
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             velocity *= 2f;
 
         // Yeah
         rigidbody.MovePosition(rigidbody.position + velocity * SPEED);
 
-        if (!safe)
+        if (!circleSafe && !safe)
             detection += DETECTION_RATE * Time.deltaTime;
         else
             detection -= DETECTION_COOLDOWN * Time.deltaTime;

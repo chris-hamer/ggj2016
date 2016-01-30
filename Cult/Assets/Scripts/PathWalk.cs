@@ -45,6 +45,10 @@ public class PathWalk : MonoBehaviour {
         }
         else // We are moving between points.
         {
+            // We didn't loop, so stop moving
+            if (IndexNextPathNode >= pathNodeList.Length || IndexNextPathNode < 0)
+                return;
+
             Vector2 difference = pathNodeList[IndexNextPathNode].Position - rigidbody.position;
             // Keep moving unless we reach the destination.
             if (difference.magnitude > MinStoppingDistance)
