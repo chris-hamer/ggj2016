@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class PlayerControls : MonoBehaviour {
 
     new private Rigidbody2D rigidbody;
+    private CharacterSprites sprites;
 
     public const float SPEED = 0.035f;
 
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour {
 	void Start ()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        sprites = GetComponent<CharacterSprites>();
 	}
 	
 	// Update is called once per frame
@@ -27,8 +29,12 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.RightArrow))
             moveVec += Vector2.right;
 
+        if (sprites != null)
+            sprites.SetDirection(moveVec);
+
         if (Input.GetKey(KeyCode.LeftShift))
             moveVec *= 2f;
+
         rigidbody.MovePosition(rigidbody.position + moveVec * SPEED);
     }
 }
