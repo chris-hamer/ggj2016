@@ -6,7 +6,8 @@ public class LevelTransition : MonoBehaviour {
 
     public static string[][] scenes =
         {
-          new string[] { "",            "",            "",             "dev-sequence1", ""            },
+          new string[] { "",            "",            "",             "dev-end2",      ""            },
+          new string[] { "",            "",            "",             "dev-end1",      ""            },
           new string[] { "",            "",            "",             "dev-order3",    ""            },
           new string[] { "",            "",            "",             "dev-order2",    ""            },
           new string[] { "",            "",            "",             "dev-order1",    ""            },
@@ -16,7 +17,7 @@ public class LevelTransition : MonoBehaviour {
           new string[] { "tutorial1",   "",            "",             "",              ""            }
         };
 
-    public static Vector2 index = new Vector2(0, 7);
+    public static Vector2 index = new Vector2(0, 8);
     public Vector2 direction;
 
     public float transitionTime = 0f;
