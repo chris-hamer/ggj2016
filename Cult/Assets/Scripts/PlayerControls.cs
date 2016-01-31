@@ -15,11 +15,18 @@ public class PlayerControls : MonoBehaviour {
     public bool circleSafe;
     public float detection;
     public bool hasHat;
+    public bool controlsEnabled;
 
     public static GameObject player;
     public Vector2 velocity;
 
+    public Vector2 startPos;
+    private string currentScene;
+
+    public AudioSource dedSound;
+
     void Awake() {
+        currentScene = "tutorial1";
         rigidbody = GetComponent<Rigidbody2D>();
         sprites = GetComponent<CharacterSprites>();
     }
@@ -27,7 +34,8 @@ public class PlayerControls : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-       safe = true;
+        controlsEnabled = true;
+        safe = true;
         circleSafe = false;
         detection = 0f;
 
@@ -48,15 +56,18 @@ public class PlayerControls : MonoBehaviour {
         // Move using keyboard input
         velocity = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.UpArrow))
-            velocity += Vector2.up;
-        if (Input.GetKey(KeyCode.DownArrow))
-            velocity += Vector2.down;
-        if (Input.GetKey(KeyCode.LeftArrow))
-            velocity += Vector2.left;
-        if (Input.GetKey(KeyCode.RightArrow))
-            velocity += Vector2.right;
-        velocity.Normalize();
+        if (controlsEnabled)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+                velocity += Vector2.up;
+            if (Input.GetKey(KeyCode.DownArrow))
+                velocity += Vector2.down;
+            if (Input.GetKey(KeyCode.LeftArrow))
+                velocity += Vector2.left;
+            if (Input.GetKey(KeyCode.RightArrow))
+                velocity += Vector2.right;
+            velocity.Normalize();
+        }
 
         // Face sprite the right way
         if (sprites != null)
@@ -79,7 +90,11 @@ public class PlayerControls : MonoBehaviour {
         else if (detection >= 1f)
         {
             detection = 1f;
-            Debug.Log("You suck");
+            if (controlsEnabled)
+            {
+                controlsEnabled = false;
+                StartCoroutine(Die());
+            }
         }
     }
 
@@ -90,7 +105,31 @@ public class PlayerControls : MonoBehaviour {
             if (g.gameObject != gameObject)
                 GameObject.Destroy(g.gameObject);
         }
-
+        currentScene = name;
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
+    }
+
+    IEnumerator Die()
+    {
+        dedSound.Play();
+        GetComponent<Collider2D>().isTrigger = true;
+        SpriteRenderer r = GetComponent<SpriteRenderer>();
+        while (r.color.a > 0)
+        {
+            r.color = new Color(1, 0, 0, r.color.a - 2 * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1);
+
+        GetComponent<Collider2D>().isTrigger = false;
+        controlsEnabled = true;
+        rigidbody.MovePosition(startPos);
+        detection = 0f;
+        r.color = new Color(1, 1, 1, 1);
+        safe = true;
+        circleSafe = false;
+        LoadLevel(currentScene);
+        //LoadLevel("tutorial1");
     }
 }
