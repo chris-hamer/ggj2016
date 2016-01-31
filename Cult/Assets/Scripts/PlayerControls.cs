@@ -45,16 +45,6 @@ public class PlayerControls : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            foreach (Transform g in GameObject.FindObjectsOfType<Transform>())
-            {
-                if (g.gameObject != gameObject)
-                    GameObject.Destroy(g.gameObject);
-            }
-            SceneManager.LoadScene("tutorial2", LoadSceneMode.Additive);
-        }
-
         // Move using keyboard input
         velocity = Vector2.zero;
 
@@ -100,7 +90,7 @@ public class PlayerControls : MonoBehaviour {
             if (g.gameObject != gameObject)
                 GameObject.Destroy(g.gameObject);
         }
-        Debug.Log(name);
+
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
     }
 }
