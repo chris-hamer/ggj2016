@@ -3,12 +3,11 @@ using System.Collections;
 
 public class PathNode : MonoBehaviour {
 
-    public float WaitDuration { get { return waitDuration; } }
+    public float WaitDuration = 0.0f;
     public bool IsOccupied { get { return isOccupied; } }
     public Vector2 Position { get { return position; } }
 
     private bool isOccupied = false;
-    private float waitDuration = 0.0f;
 
     private Vector2 position;
     [HideInInspector] new public Transform transform;  // cache
