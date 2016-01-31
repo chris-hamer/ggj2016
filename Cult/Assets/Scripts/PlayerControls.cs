@@ -19,12 +19,15 @@ public class PlayerControls : MonoBehaviour {
     public static GameObject player;
     public Vector2 velocity;
 
+    void Awake() {
+        rigidbody = GetComponent<Rigidbody2D>();
+        sprites = GetComponent<CharacterSprites>();
+    }
+
     // Use this for initialization
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-        sprites = GetComponent<CharacterSprites>();
-        safe = true;
+       safe = true;
         circleSafe = false;
         detection = 0f;
 

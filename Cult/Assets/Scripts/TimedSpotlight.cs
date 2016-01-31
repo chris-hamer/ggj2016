@@ -11,8 +11,11 @@ public class TimedSpotlight : MonoBehaviour {
     private float fadingOutTime;
     private float originalIntensity;
 
-	void Start () {
+    void Awake() {
         light = GetComponent<Light>();
+    }
+
+    void Start () {
         originalIntensity = light.intensity;
         light.enabled = false;
         fadingOutTime = FadeOutTime;

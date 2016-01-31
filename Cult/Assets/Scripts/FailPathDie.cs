@@ -9,7 +9,7 @@ public class FailPathDie : MonoBehaviour {
     [HideInInspector] new public Transform transform;
     private SpriteRenderer spriteRenderer;
 
-    void Start () {
+    void Awake () {
         transform = GetComponent<Transform>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }

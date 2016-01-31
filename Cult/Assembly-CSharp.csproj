@@ -45,8 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ActivateOrder.cs" />
-     <Compile Include="Assets\Scripts\ActivateOrderNode.cs" />
      <Compile Include="Assets\Scripts\CharacterSprites.cs" />
      <Compile Include="Assets\Scripts\CirclePathZone.cs" />
      <Compile Include="Assets\Scripts\DetectionMeter.cs" />
@@ -60,6 +58,8 @@
      <Compile Include="Assets\Scripts\PlayerControls.cs" />
      <Compile Include="Assets\Scripts\RectangleRitual.cs" />
      <Compile Include="Assets\Scripts\SafeZone.cs" />
+     <Compile Include="Assets\Scripts\SequenceNode.cs" />
+     <Compile Include="Assets\Scripts\SequenceObject.cs" />
      <Compile Include="Assets\Scripts\TimedSpotlight.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

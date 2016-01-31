@@ -12,8 +12,11 @@ public class PathNode : MonoBehaviour {
     private Vector2 position;
     [HideInInspector] new public Transform transform;  // cache
 
-    void Start () {
+    void Awake () {
         transform = GetComponent<Transform>();
+    }
+
+    void Start () {
         position = (Vector2)transform.position;
     }
 	

@@ -22,22 +22,25 @@ public class PathWalk : MonoBehaviour {
 
     private PathNode[] pathNodeList = null;
     private FailPathDie failPathDie = null;
-    private float speed = PlayerControls.SPEED; // Moves at same speed as the player
+    private float speed;// = PlayerControls.SPEED; // Moves at same speed as the player
     private float waitTimer = 0.0f;
-    private bool isWalking = true;
+//    private bool isWalking = true;
     private bool isActive;
 
-	void Start () {
+    void Awake() {
         transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody2D>();
         sprites = GetComponent<CharacterSprites>();
-        pathNodeList = new PathNode[ListPathNodeTransforms.Length];
-        for (int ii=0; ii<ListPathNodeTransforms.Length; ii++)
-        {
-            pathNodeList[ii] = ListPathNodeTransforms[ii].GetComponent<PathNode>();
-        }
         isActive = StartOnLoad;
         failPathDie = GetComponent<FailPathDie>();
+    }
+
+	void Start () {
+        pathNodeList = new PathNode[ListPathNodeTransforms.Length];
+        for (int ii=0; ii<ListPathNodeTransforms.Length; ii++) {
+            pathNodeList[ii] = ListPathNodeTransforms[ii].GetComponent<PathNode>();
+        }
+        speed = PlayerControls.SPEED * SpeedMultiplier;
     }
 
     public void BeginWalk() {
@@ -67,7 +70,7 @@ public class PathWalk : MonoBehaviour {
                 {
                     if (sprites != null)
                         sprites.SetSpriteDirection(Mathf.Abs(difference.x) > Mathf.Abs(difference.y) ? Vector2.right * Mathf.Sign(difference.x) : Vector2.up * Mathf.Sign(difference.y));
-                    rigidbody.MovePosition(rigidbody.position + difference.normalized * PlayerControls.SPEED * SpeedMultiplier);
+                    rigidbody.MovePosition(rigidbody.position + difference.normalized * speed);
                 }
                 else
                 {

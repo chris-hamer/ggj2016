@@ -21,12 +21,14 @@ public class CirclePathZone : MonoBehaviour {
     public float clockwiseSign;
     public bool isTracking = false;
 
-	// Use this for initialization
-	void Start () {
+	void Awake() {
         collider2D = GetComponent<CircleCollider2D>();
         position3D = GetComponent<Transform>().position;
         clockwiseSign = IsClockwise ? 1.0f : -1.0f;
         RequiredAngularDistanceDegrees = Mathf.Abs(RequiredAngularDistanceDegrees);
+    }
+
+    void Start () {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 	

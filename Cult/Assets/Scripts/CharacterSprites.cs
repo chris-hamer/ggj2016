@@ -8,11 +8,14 @@ public class CharacterSprites : MonoBehaviour {
     new private SpriteRenderer renderer;
     new private Rigidbody2D rigidbody;
 
-	// Use this for initialization
-	void Start ()
-    {
+    void Awake() {
         renderer = GetComponent<SpriteRenderer>();
         rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
         SetSpriteDirection(Vector2.down);
 	}
 

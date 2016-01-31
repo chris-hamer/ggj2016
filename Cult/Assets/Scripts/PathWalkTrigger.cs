@@ -13,11 +13,13 @@ public class PathWalkTrigger : MonoBehaviour {
 
     private bool isTriggered = false;
 
-	// Use this for initialization
-	void Start () {
+	void Awake() {
         transform = GetComponent<Transform>();
         collider = GetComponent<Collider2D>();
         pathWalk = GetComponent<PathWalk>();
+    }
+
+    void Start () {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         if (DelayCollisionDetection > 0.0f) {
             collider.enabled = false;
