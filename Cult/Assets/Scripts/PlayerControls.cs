@@ -20,8 +20,10 @@ public class PlayerControls : MonoBehaviour {
     public static GameObject player;
     public Vector2 velocity;
 
-    private Vector2 startPos;
+    public Vector2 startPos;
     private string currentScene;
+
+    public AudioSource dedSound;
 
     void Awake() {
         currentScene = "tutorial1";
@@ -98,7 +100,6 @@ public class PlayerControls : MonoBehaviour {
 
     public void LoadLevel(string name)
     {
-        startPos = rigidbody.position;
         foreach (Transform g in GameObject.FindObjectsOfType<Transform>())
         {
             if (g.gameObject != gameObject)
@@ -110,6 +111,8 @@ public class PlayerControls : MonoBehaviour {
 
     IEnumerator Die()
     {
+        dedSound.Play();
+        GetComponent<Collider2D>().isTrigger = true;
         SpriteRenderer r = GetComponent<SpriteRenderer>();
         while (r.color.a > 0)
         {
@@ -119,13 +122,14 @@ public class PlayerControls : MonoBehaviour {
 
         yield return new WaitForSeconds(1);
 
+        GetComponent<Collider2D>().isTrigger = false;
         controlsEnabled = true;
-        rigidbody.position = startPos;
+        rigidbody.MovePosition(startPos);
         detection = 0f;
         r.color = new Color(1, 1, 1, 1);
         safe = true;
-        circleSafe = true;
-        SceneManager.LoadScene(currentScene);
-        //SceneManager.LoadScene("tutorial1");
+        circleSafe = false;
+        LoadLevel(currentScene);
+        //LoadLevel("tutorial1");
     }
 }

@@ -40,6 +40,7 @@ public class LevelTransition : MonoBehaviour {
         {
             transitionTime = 0.5f;
             player.position -= direction.normalized * (direction.x != 0 ? 13.5f : 7.4f);
+            player.GetComponent<PlayerControls>().startPos = player.position;
             direction.y *= -1;
             index += direction;
 
