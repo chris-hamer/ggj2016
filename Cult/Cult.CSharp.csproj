@@ -55,6 +55,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -63,14 +69,19 @@
     <Compile Include="Assets\Scripts\CharacterSprites.cs" />
     <Compile Include="Assets\Scripts\CirclePathZone.cs" />
     <Compile Include="Assets\Scripts\DetectionMeter.cs" />
+    <Compile Include="Assets\Scripts\FailPathDie.cs" />
     <Compile Include="Assets\Scripts\FootstepZone.cs" />
     <Compile Include="Assets\Scripts\HatPickup.cs" />
     <Compile Include="Assets\Scripts\LevelTransition.cs" />
     <Compile Include="Assets\Scripts\PathNode.cs" />
     <Compile Include="Assets\Scripts\PathWalk.cs" />
+    <Compile Include="Assets\Scripts\PathWalkTrigger.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\RectangleRitual.cs" />
     <Compile Include="Assets\Scripts\SafeZone.cs" />
+    <Compile Include="Assets\Scripts\SequenceNode.cs" />
+    <Compile Include="Assets\Scripts\SequenceObject.cs" />
+    <Compile Include="Assets\Scripts\TimedSpotlight.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
